@@ -1,0 +1,1 @@
+javac Simulator/*.java interfaces/*.java aircrafts/*.java
