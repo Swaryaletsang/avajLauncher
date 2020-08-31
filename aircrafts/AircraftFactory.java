@@ -10,14 +10,14 @@ public abstract class AircraftFactory {
         
         Coordinates coordinates = new Coordinates(longitude, latitude, height);
 
-        if (type == "Baloon") {
-            return new Balloon(name, coordinates); }
-        if (type == "JetPlane"){
+        if (type.equals("Baloon")) {
+            return (new Balloon(name, coordinates)); }
+        else if (type.equals("JetPlane")){
             return new JetPlane(name, coordinates);
         }
-        if (type == "Helicopter") {
+        else if (type.equals("Helicopter")) {
             return new Helicopter(name, coordinates);
-        }
-        return null;
+        }else
+            return null;
     }
 }

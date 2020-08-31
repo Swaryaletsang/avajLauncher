@@ -22,4 +22,9 @@ public class Tower {
             flyable.updateConditions();
         }
     }
+    public void checkplanes(){
+        conditionsChanged();
+
+        //System.out.println(observers);
+    }
 }

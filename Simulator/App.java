@@ -12,6 +12,7 @@ public class App {
         if (args.length == 1) {
             FileReader fileReader = new FileReader(args[0]);
             fileReader.fileContents();
+            Tower tower = new Tower();
 
             if (fileReader.verifyContent() == 1){
                 Flyable x = null;
@@ -21,11 +22,12 @@ public class App {
                     planes = fileReader.fileContent.get(i).split(" ", 5);
                     
                     //Simulate
-                    x = AircraftFactory.newAircraft(planes[0], planes[1],Integer.parseInt(planes[2]),Integer.parseInt(planes[3]), Integer.parseInt(planes[4]));
-                    System.out.println(Integer.parseInt(planes[3]));
-                    if (x == null)
-                        System.out.println("X is null for some reason");
+                    x = AircraftFactory.newAircraft(planes[0], planes[1],(Integer.parseInt(planes[2])),Integer.parseInt(planes[3]), Integer.parseInt(planes[4]));
+
+                    if (x != null)
+                        tower.register(x);
                 }
+                tower.checkplanes();
             }else{
                 //Error Message
                 System.out.println("Scenario file content error: Unexpected input");
