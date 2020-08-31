@@ -5,6 +5,7 @@ import Simulator.WeatherTower;
 import interfaces.Flyable;
 
 /**
+ * CONCRETE Observer class
  * JetPlane
  */
 public class JetPlane extends Aircraft implements Flyable {
@@ -17,6 +18,7 @@ public class JetPlane extends Aircraft implements Flyable {
     @Override
     public void updateConditions() {
         // TODO Auto-generated method stub
+        System.out.println("Tower says: " + "JetPlane#"+ this.name + "("+this.nextId()+")"+ "Registered to the weather tower");
 
     }
 

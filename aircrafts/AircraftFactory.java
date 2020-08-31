@@ -10,7 +10,7 @@ public abstract class AircraftFactory {
         
         Coordinates coordinates = new Coordinates(longitude, latitude, height);
 
-        if (type == "Balloon") {
+        if (type == "Baloon") {
             return new Balloon(name, coordinates); }
         if (type == "JetPlane"){
             return new JetPlane(name, coordinates);
