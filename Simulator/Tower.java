@@ -24,7 +24,5 @@ public class Tower {
     }
     public void checkplanes(){
         conditionsChanged();
-
-        //System.out.println(observers);
     }
 }
