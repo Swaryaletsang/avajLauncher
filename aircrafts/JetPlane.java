@@ -18,7 +18,7 @@ public class JetPlane extends Aircraft implements Flyable {
     @Override
     public void updateConditions() {
         // TODO Auto-generated method stub
-        System.out.println("Tower says: " + "JetPlane#"+ this.name + "("+this.nextId()+")"+ "Registered to the weather tower");
+        System.out.println("Tower says: " + "JetPlane#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
 
     }
 

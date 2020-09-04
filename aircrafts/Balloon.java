@@ -15,7 +15,7 @@ public class Balloon extends Aircraft implements Flyable {
     @Override
     public void updateConditions() {
         // TODO Auto-generated method stub
-        System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.nextId()+")"+ "Registered to the weather tower");
+        System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
     }
 
     @Override
