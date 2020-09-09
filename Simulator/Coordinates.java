@@ -18,6 +18,9 @@ public class Coordinates {
         this.latitude = latitude;
         this.height = height;
     }
+    // public void setLongitude(int longitude) { this.longitude = longitude;}
+    // public void setLatitude(int latitude) { this.latitude = latitude; }
+    // public void setHeight(int height) { this.height = height; }
 
     public int getLongitude() { return this.longitude; }
     public int getLatitude() { return this.latitude; }

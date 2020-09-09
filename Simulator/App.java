@@ -13,21 +13,29 @@ public class App {
             FileReader fileReader = new FileReader(args[0]);
             fileReader.fileContents();
             Tower tower = new Tower();
+            WeatherTower weatherTower = new WeatherTower();
 
             if (fileReader.verifyContent() == 1){
                 Flyable x = null;
-               // int run = Integer.parseInt(fileReader.fileContent.get(0));
+               int run = Integer.parseInt(fileReader.fileContent.get(0));
                 String[] planes = {};
                 for (int i = 1; i < fileReader.fileContent.size(); i++) {
                     planes = fileReader.fileContent.get(i).split(" ", 5);
                     
                     //Simulate
                     x = AircraftFactory.newAircraft(planes[0], planes[1],(Integer.parseInt(planes[2])),Integer.parseInt(planes[3]), Integer.parseInt(planes[4]));
-
+                    //registering
+                    // if (x != null)
+                    //     tower.register(x);
                     if (x != null)
-                        tower.register(x);
+                        x.registerTower(weatherTower);
                 }
-                tower.checkplanes();
+                //while loop for simulating the weather part
+                while (run-- > 0) {
+                  weatherTower.changeWeather();  
+                }
+                
+                //tower.checkplanes();
             }else{
                 //Error Message
                 System.out.println("Scenario file content error: Unexpected input");

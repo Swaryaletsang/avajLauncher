@@ -13,8 +13,9 @@ public class Tower {
         observers.add(flyable);
     }
 
-    public void unregister (Flyable flyable) {
+    public void unregister (Flyable flyable) {System.out.println(flyable);
         observers.remove(flyable);
+        
     }
 
     protected void conditionsChanged(){
@@ -22,7 +23,8 @@ public class Tower {
             flyable.updateConditions();
         }
     }
-    public void checkplanes(){
-        conditionsChanged();
-    }
+    // public void checkplanes(){
+    //     conditionsChanged();
+
+    // }
 }
