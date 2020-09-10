@@ -1,9 +1,9 @@
 package aircrafts;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import Simulator.Coordinates;
-import Simulator.Tower;
 import Simulator.WeatherTower;
 import interfaces.Flyable;
 
@@ -30,32 +30,45 @@ public class Balloon extends Aircraft implements Flyable {
         this.weather = this.tower.getWeather(coordinates);
         Coordinates newCoordinates = null;
 
-        if(this.weather.equals("RAIN")){
-            newCoordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 5);
+        if (this.weather.equals("RAIN")) {
+            newCoordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(),
+                    this.coordinates.getHeight() - 5);
         }
-        if(this.weather.equals("FOG")){
-            newCoordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 3);
+        if (this.weather.equals("FOG")) {
+            newCoordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(),
+                    this.coordinates.getHeight() - 3);
         }
-        if(this.weather.equals("SUN")){
-            newCoordinates = new Coordinates(this.coordinates.getLongitude() + 2, this.coordinates.getLatitude(), this.coordinates.getHeight() + 4);
+        if (this.weather.equals("SUN")) {
+            newCoordinates = new Coordinates(this.coordinates.getLongitude() + 2, this.coordinates.getLatitude(),
+                    this.coordinates.getHeight() + 4);
         }
-        if(this.weather.equals("SNOW")){
-            newCoordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 15);
+        if (this.weather.equals("SNOW")) {
+            newCoordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(),
+                    this.coordinates.getHeight() - 15);
         }
         this.coordinates = newCoordinates;
-        System.out.println(message.get(this.weather));
+        System.out.println("Baloon#" + this.name + "(" + this.id + "): " + message.get(this.weather));
         if (this.coordinates.getHeight() <= 0) {
             System.out.println(message.get("LAND"));
             this.tower.unregister(this);
+            System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ " Unregistered from the weather tower");
         }
     }
 
     @Override
-    public void registerTower(WeatherTower weatherTower) {
+    public void registerTower(WeatherTower weatherTower) throws IOException {
         // TODO Auto-generated method stub
         this.tower = weatherTower;
         this.tower.register(this);
-        System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
+        // String temp;
+        try {
+            System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
+            //can't write to a file
+            Aircraft.writer.write("hello");
+        } catch (Exception e) {
+            //TODO: handle exception
+            System.out.println(e.getMessage());
+        }
     }
     
 }

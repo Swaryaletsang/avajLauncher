@@ -8,12 +8,26 @@ import java.util.*;
 
 public class App {
 
-    public static void main(final String[] args) throws IOException {
+    public static void main(final String[] args) throws Exception {
         if (args.length == 1) {
             FileReader fileReader = new FileReader(args[0]);
             fileReader.fileContents();
-            Tower tower = new Tower();
             WeatherTower weatherTower = new WeatherTower();
+
+            // try {
+            //     File myObj = new File("./Simulation.txt");
+            //     if (myObj.createNewFile()) {
+            //       System.out.println("File created: " + myObj.getName());
+            //       try{
+            //           FileWriter myWriter = new FileWriter("./Simulation.txt");
+            //     }catch(Exception e){
+            //        System.out.println(e.getMessage());
+            //     }
+            //     }
+            //   } catch (IOException e) {
+            //     System.out.println("An error occurred.");
+            //     e.printStackTrace();
+            //   }
 
             if (fileReader.verifyContent() == 1){
                 Flyable x = null;
@@ -25,13 +39,13 @@ public class App {
                     //Simulate
                     x = AircraftFactory.newAircraft(planes[0], planes[1],(Integer.parseInt(planes[2])),Integer.parseInt(planes[3]), Integer.parseInt(planes[4]));
                     //registering
-                    // if (x != null)
-                    //     tower.register(x);
+                    // if (x == null)
+                    //     System.out.println("x is null for some reason");
                     if (x != null)
                         x.registerTower(weatherTower);
                 }
                 //while loop for simulating the weather part
-                while (run-- > 0) {
+                while(run-- > 13) {
                   weatherTower.changeWeather();  
                 }
                 
@@ -43,6 +57,7 @@ public class App {
         }else{
             System.out.println("Come on dude you didnt give me a scenario file as an argument");
         }
+        
     }
 }
 
