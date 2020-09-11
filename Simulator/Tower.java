@@ -22,8 +22,7 @@ public class Tower {
             try {
                 aircrafts.get(i).updateConditions();
             } catch (Exception e) {
-                //TODO: handle exception
-                e.getStackTrace();
+                System.out.println(e.getStackTrace());
             }
         }
         // APARENTLY ITS A BAD IDEA TO USE A FOR EACH TO ITERATE AN ARRAYLIST

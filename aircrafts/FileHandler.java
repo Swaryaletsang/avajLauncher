@@ -7,13 +7,11 @@ import java.util.HashMap;
 public class FileHandler {
     private static HashMap<String, FileHandler> m_handlers = new HashMap<>();
 
-    private final String m_path;
 
     public static FileWriter m_writer;
     // private final BufferedReader m_reader; this one is optional, and I did not instantiate in this example.
 
     public FileHandler (String path) {
-        m_path = path;
         try {
             m_writer = new FileWriter(path);
         } catch (Exception e) {
