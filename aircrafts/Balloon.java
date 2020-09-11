@@ -17,11 +17,11 @@ public class Balloon extends Aircraft implements Flyable {
 
     Balloon(String name, Coordinates coordinates) {
         super(name, coordinates);
-        message.put("RAIN", "its raining");
-        message.put("SNOW", "its snowy");
-        message.put("FOG", "its forgy");
-        message.put("SUN", "its hot");
-        message.put("LAND", "I've got lo land this balloon");
+        message.put("RAIN", "its raining, Should've taken a bus");
+        message.put("SNOW", "Whoa this feels like I'm in a Regrigirator");
+        message.put("FOG", "FOG FOG FOG Everywhere");
+        message.put("SUN", "its a shiny day lets take pictures");
+        message.put("LAND", "I've got to land this balloon");
     }
 
     @Override
@@ -47,11 +47,11 @@ public class Balloon extends Aircraft implements Flyable {
                     this.coordinates.getHeight() - 15);
         }
         this.coordinates = newCoordinates;
-        System.out.println("Baloon#" + this.name + "(" + this.id + "): " + message.get(this.weather));
+        FileHandler.write(Aircraft.path, "Baloon#" + this.name + "(" + this.id + "): " + message.get(this.weather)+"\n");
         if (this.coordinates.getHeight() <= 0) {
-            System.out.println(message.get("LAND"));
+            FileHandler.write(Aircraft.path, message.get("LAND")+"\n");
             this.tower.unregister(this);
-            System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ " Unregistered from the weather tower");
+            FileHandler.write(Aircraft.path, "Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ " Unregistered from the weather tower\n");
         }
     }
 
@@ -60,15 +60,10 @@ public class Balloon extends Aircraft implements Flyable {
         // TODO Auto-generated method stub
         this.tower = weatherTower;
         this.tower.register(this);
-        // String temp;
-        try {
-            System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
-            //can't write to a file
-            Aircraft.writer.write("hello");
-        } catch (Exception e) {
-            //TODO: handle exception
-            System.out.println(e.getMessage());
-        }
+        String temp;
+        // System.out.println("Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
+        temp = "Tower says: " + "Baloon#"+ this.name + "("+this.id+")"+ "Registered to the weather tower\n";
+        FileHandler.write(Aircraft.path, temp);
     }
     
 }

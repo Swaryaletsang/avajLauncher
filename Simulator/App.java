@@ -14,21 +14,6 @@ public class App {
             fileReader.fileContents();
             WeatherTower weatherTower = new WeatherTower();
 
-            // try {
-            //     File myObj = new File("./Simulation.txt");
-            //     if (myObj.createNewFile()) {
-            //       System.out.println("File created: " + myObj.getName());
-            //       try{
-            //           FileWriter myWriter = new FileWriter("./Simulation.txt");
-            //     }catch(Exception e){
-            //        System.out.println(e.getMessage());
-            //     }
-            //     }
-            //   } catch (IOException e) {
-            //     System.out.println("An error occurred.");
-            //     e.printStackTrace();
-            //   }
-
             if (fileReader.verifyContent() == 1){
                 Flyable x = null;
                int run = Integer.parseInt(fileReader.fileContent.get(0));
@@ -36,20 +21,18 @@ public class App {
                 for (int i = 1; i < fileReader.fileContent.size(); i++) {
                     planes = fileReader.fileContent.get(i).split(" ", 5);
                     
-                    //Simulate
+                    //creates new aircraft
                     x = AircraftFactory.newAircraft(planes[0], planes[1],(Integer.parseInt(planes[2])),Integer.parseInt(planes[3]), Integer.parseInt(planes[4]));
-                    //registering
-                    // if (x == null)
-                    //     System.out.println("x is null for some reason");
+                    //Simulate
                     if (x != null)
                         x.registerTower(weatherTower);
                 }
+                
                 //while loop for simulating the weather part
                 while(run-- > 13) {
                   weatherTower.changeWeather();  
                 }
-                
-                //tower.checkplanes();
+                FileHandler.m_writer.close();
             }else{
                 //Error Message
                 System.out.println("Scenario file content error: Unexpected input");

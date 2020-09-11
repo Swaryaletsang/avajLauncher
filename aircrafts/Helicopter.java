@@ -17,11 +17,11 @@ public class Helicopter extends Aircraft implements Flyable {
     Helicopter(final String name, final Coordinates coordinates) {
         super(name, coordinates);
         // TODO Auto-generated constructor stub
-        message.put("RAIN", "its raining");
-        message.put("SNOW", "its snowy");
-        message.put("FOG", "its forgy");
-        message.put("SUN", "its hot");
-        message.put("LAND", "I've got lo land this Helicopter");
+        message.put("RAIN", "Oh look its raining");
+        message.put("SNOW", "Wow I'm seeing cocane but its cold");
+        message.put("FOG", "Crap I can't see!!! the world is defrosting");
+        message.put("SUN", "Summer is to die for");
+        message.put("LAND", "I've got to land this Helicopter");
     }
 
     @Override
@@ -43,11 +43,11 @@ public class Helicopter extends Aircraft implements Flyable {
             newCoordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 12);
         }
         this.coordinates = newCoordinates;
-        System.out.println("Helicopter#"+ this.name + "("+this.id+"): "+ message.get(this.weather));
+        FileHandler.write(Aircraft.path, "Helicopter#"+ this.name + "("+this.id+"): "+ message.get(this.weather)+"\n");
         if (this.coordinates.getHeight() <= 0) {
-            System.out.println(message.get("LAND"));
+            FileHandler.write(Aircraft.path, message.get("LAND")+"\n");
             this.tower.unregister(this);
-            System.out.println("Tower says: " + "Helicopter#"+ this.name + "("+this.id+")"+ " Unregistered from the weather tower");
+            FileHandler.write(Aircraft.path, "Tower says: " + "Helicopter#"+ this.name + "("+this.id+")"+ " Unregistered from the weather tower\n");
         }
     }
 
@@ -56,8 +56,10 @@ public class Helicopter extends Aircraft implements Flyable {
         // TODO Auto-generated method stub
         this.tower = weatherTower;
         this.tower.register(this);
-        System.out.println("Tower says: " + "Helicopter#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
-
+        String temp;
+        // System.out.println("Tower says: " + "Helicopter#"+ this.name + "("+this.id+")"+ "Registered to the weather tower");
+        temp = "Tower says: " + "Helicopter#"+ this.name + "("+this.id+")"+ "Registered to the weather tower\n";
+        FileHandler.write(Aircraft.path, temp);
     }
     
 }
