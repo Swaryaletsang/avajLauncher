@@ -86,17 +86,24 @@ class FileReader {
     }
     public int verifyContent() {
 
-    String[] array = { "Baloon", "JetPlane", "Helicopter"};
+    //String[] array = { "Baloon", "JetPlane", "Helicopter"};
+    ArrayList<String> vehicle = new ArrayList<String>();
+    vehicle.add("Baloon");
+    vehicle.add("JetPlane");
+    vehicle.add("Helicopter");
     String[] newArr = {};
-    int index = 0;
+    // int index = 0;
     String line1 = this.fileContent.get(0);
     if (Integer.parseInt(line1) > 0) {
         for (int i = 1; i < this.fileContent.size(); i++) {
 
             newArr = this.fileContent.get(i).split(" ", 5);
-            index = Arrays.binarySearch(array, newArr[0]); //come back and review the binary search BUG!!!
+            //index = Arrays.binarySearch(array, newArr[0]); //come back and review the binary search BUG!!!
 
-            if (index == -1 || (Integer.parseInt(newArr[2]) < 0) || (Integer.parseInt(newArr[3]) < 0) || (Integer.parseInt(newArr[4]) < 0)){
+            if(!vehicle.contains(newArr[0]))
+                return 0;
+
+            if ((Integer.parseInt(newArr[2]) < 0) || (Integer.parseInt(newArr[3]) < 0) || (Integer.parseInt(newArr[4]) < 0)){
                 return (0);
             }
                 

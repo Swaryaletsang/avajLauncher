@@ -1,1 +1,2 @@
-javac Simulator/*.java interfaces/*.java aircrafts/*.java
+find -name *.java > sources.txt
+javac @sources.txt

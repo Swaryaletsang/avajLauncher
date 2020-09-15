@@ -19,11 +19,14 @@ public class Tower {
 
     protected void conditionsChanged(){
         for (int i = 0; i < aircrafts.size(); i++) {
+            int size = this.aircrafts.size();
             try {
                 aircrafts.get(i).updateConditions();
             } catch (Exception e) {
                 System.out.println(e.getStackTrace());
             }
+            if (this.aircrafts.size() < size)
+                i--;
         }
         // APARENTLY ITS A BAD IDEA TO USE A FOR EACH TO ITERATE AN ARRAYLIST
         // for (Flyable flyable : observers) {
